@@ -188,11 +188,10 @@ void ESPserial(String strUID, String Message, int NUMBER,
             checksum += receive[i];
         }
 
-        unsigned long buffer[0] =
-            (unsigned long)(((receive[0] << 24) & 0xFF000000) |
-                            ((receive[1] << 16) & 0x00FF0000) |
-                            ((receive[2] << 8) & 0x0000FF00) |
-                            ((receive[3] << 0) & 0x000000FF));
+        buffer[0] = (unsigned long)(((receive[0] << 24) & 0xFF000000) |
+                                    ((receive[1] << 16) & 0x00FF0000) |
+                                    ((receive[2] << 8) & 0x0000FF00) |
+                                    ((receive[3] << 0) & 0x000000FF));
         buffer[1] = receive[1];
         buffer[2] = receive[2];
     }
