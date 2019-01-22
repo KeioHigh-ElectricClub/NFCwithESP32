@@ -1,0 +1,4 @@
+{
+    "sketch": "NFCwithSerial.ino",
+    "board": "arduino:avr:uno"
+}
