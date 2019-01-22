@@ -73,7 +73,7 @@ void loop() {
 
 
 
-  if ( strUID == UID ) {
+  if ( strUID == UID ){
     display.clearDisplay();//一度初期化
     display.setCursor(0, 0);//一度初期化
     display.println("collect");
