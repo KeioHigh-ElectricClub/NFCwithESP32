@@ -4,21 +4,63 @@
 #include <SPI.h>
 #include <SoftwareSerial.h>
 #include <Wire.h>
+#include <stdlib.h>
 
-#define UID "5d6b6889"  // 取得した識別子を記述
 #define START_BYTE 0x7a
 #define FINISH_BYTE 0x7b
 #define ESCAPE_BYTE 0x7c
 #define ESCAPE_MASC 0x20
 
-String Message;
-int NUMBER;
-int mode;             // A0可変抵抗器、３モード設定
-int pointDeduct = 1;  // A1ポイント減算
-int pointAdd = 1;     // A2ポイント加算
+#define UID01 "5d6b6889"  // 取得した識別子を記述
+#define UID02 "5d6b6889"  // 取得した識別子を記述
+#define UID03 "5d6b6889"  // 取得した識別子を記述
+#define UID04 "5d6b6889"  // 取得した識別子を記述
+#define UID05 "5d6b6889"  // 取得した識別子を記述
+#define UID05 "5d6b6889"  // 取得した識別子を記述
+#define UID06 "5d6b6889"  // 取得した識別子を記述
+#define UID07 "5d6b6889"  // 取得した識別子を記述
+#define UID08 "5d6b6889"  // 取得した識別子を記述
+#define UID09 "5d6b6889"  // 取得した識別子を記述
+#define UID10 "5d6b6889"  // 取得した識別子を記述
+#define UID11 "5d6b6889"  // 取得した識別子を記述
+#define UID12 "5d6b6889"  // 取得した識別子を記述
+#define UID13 "5d6b6889"  // 取得した識別子を記述
+#define UID14 "5d6b6889"  // 取得した識別子を記述
+#define UID15 "5d6b6889"  // 取得した識別子を記述
+#define UID16 "5d6b6889"  // 取得した識別子を記述
+#define UID17 "5d6b6889"  // 取得した識別子を記述
+#define UID18 "5d6b6889"  // 取得した識別子を記述
+#define UID19 "5d6b6889"  // 取得した識別子を記述
+#define UID20 "5d6b6889"  // 取得した識別子を記述
+#define UID21 "5d6b6889"  // 取得した識別子を記述
+#define UID22 "5d6b6889"  // 取得した識別子を記述
+#define UID23 "5d6b6889"  // 取得した識別子を記述
+#define UID24 "5d6b6889"  // 取得した識別子を記述
+#define UID25 "5d6b6889"  // 取得した識別子を記述
+#define UID26 "5d6b6889"  // 取得した識別子を記述
+#define UID27 "5d6b6889"  // 取得した識別子を記述
+#define UID28 "5d6b6889"  // 取得した識別子を記述
+#define UID29 "5d6b6889"  // 取得した識別子を記述
+#define UID30 "5d6b6889"  // 取得した識別子を記述
+#define UID31 "5d6b6889"  // 取得した識別子を記述
+#define UID32 "5d6b6889"  // 取得した識別子を記述
+#define UID33 "5d6b6889"  // 取得した識別子を記述
+#define UID34 "5d6b6889"  // 取得した識別子を記述
+#define UID35 "5d6b6889"  // 取得した識別子を記述
+#define UID36 "5d6b6889"  // 取得した識別子を記述
+#define UID37 "5d6b6889"  // 取得した識別子を記述
+#define UID38 "5d6b6889"  // 取得した識別子を記述
+#define UID39 "5d6b6889"  // 取得した識別子を記述
+#define UID40 "5d6b6889"  // 取得した識別子を記述
 
-constexpr uint8_t RST_PIN = 9;     // RSTピンの指定
-constexpr uint8_t SS_PIN = 10;     // SSピンの指定
+String Message;
+byte NUMBER;
+int mode;              // A0可変抵抗器、３モード設定
+byte pointDeduct = 1;  // A1ポイント減算
+byte pointAdd = 1;     // A2ポイント加算
+
+constexpr uint8_t RST_PIN = 9;     // RSTピンの指定SPI
+constexpr uint8_t SS_PIN = 10;     // SSピンの指定SPI
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // RC522と接続
 MFRC522::MIFARE_Key key;           //認証キーの指定
 
@@ -35,7 +77,7 @@ void setup() {
     Serial.println(F("Scan PICC to see UID, SAK, type, and data blocks..."));
 
     display.clearDisplay();       //一度初期化
-    display.setTextSize(2);       // 出力する文字の大きさ
+    display.setTextSize(2);       //出力する文字の大きさ
     display.setTextColor(WHITE);  //出力する文字の色
     display.setCursor(0, 0);      //カーソル位置の指定
     display.println("Nocard");    // ディスプレイへ表示する文字列
@@ -71,7 +113,20 @@ void loop() {
     String strUID = strBuf[0] + strBuf[1] + strBuf[2] + strBuf[3];
     Serial.println(strUID);
 
-    if (strUID == UID) {
+    if (strUID == UID01 || strUID == UID02 || strUID == UID03 ||
+        strUID == UID04 || strUID == UID05 || strUID == UID06 ||
+        strUID == UID07 || strUID == UID08 || strUID == UID09 ||
+        strUID == UID10 || strUID == UID11 || strUID == UID12 ||
+        strUID == UID13 || strUID == UID14 || strUID == UID15 ||
+        strUID == UID16 || strUID == UID17 || strUID == UID18 ||
+        strUID == UID19 || strUID == UID20 || strUID == UID21 ||
+        strUID == UID22 || strUID == UID23 || strUID == UID24 ||
+        strUID == UID25 || strUID == UID26 || strUID == UID27 ||
+        strUID == UID28 || strUID == UID29 || strUID == UID30 ||
+        strUID == UID31 || strUID == UID32 || strUID == UID33 ||
+        strUID == UID34 || strUID == UID35 || strUID == UID36 ||
+        strUID == UID37 || strUID == UID38 || strUID == UID39 ||
+        strUID == UID40) {
         display.clearDisplay();   //一度初期化
         display.setCursor(0, 0);  //一度初期化
         display.println("collect");
@@ -81,6 +136,7 @@ void loop() {
         display.println(strUID);
         display.display();
 
+        digitalWrite(3, LOW);
         tone(6, 1700);
         delay(30);
         noTone(6);
@@ -88,10 +144,10 @@ void loop() {
         tone(6, 1700, 90);
         delay(500);
 
-        blank(strUID);
+        Select(strUID);  // Option関数へ移行
     }
 
-    if (!(strUID == UID)) {
+    else {
         display.clearDisplay();   //一度初期化
         display.setCursor(0, 0);  //一度初期化
         display.println("error!");
@@ -116,9 +172,10 @@ void loop() {
     }
 }
 
-void blank(String strUID) {
-    int submit = 1;  // A3送信
-    unsigned long buffer[3];
+void Select(String strUID) {
+    byte submit = 1;  // A3送信　INPUT_PULLUPにしているから押さなければHIGH
+    byte MODEbyte;
+    byte buffer[2];
 
     while (submit == 0) {
         mode = analogRead(A0);
@@ -139,14 +196,17 @@ void blank(String strUID) {
 
         if (mode <= 85) {
             Message = "Reset";
+            MODEbyte = 0;
         }
 
         if (85 < mode && mode < 170) {
             Message = "Point";
+            MODEbyte = 1;
         }
 
         if (170 <= mode) {
             Message = "GameT";
+            MODEbyte = 2;
         }
 
         if (pointDeduct == 0) {
@@ -158,22 +218,39 @@ void blank(String strUID) {
         }
 
         if (submit == 0) {
-            ESPserial(strUID, Message, NUMBER, buffer);
+            ESPserial(strUID, MODEbyte, NUMBER, buffer);
             break;
         }
     }
 }
 
-void ESPserial(String strUID, String Message, int NUMBER,
-               unsigned long* buffer) {
-    // char* data = strUID + "," + Message + "," + NUMBER + ";";
+void ESPserial(String strUID, byte MODEbyte, byte NUMBER, byte* buffer) {
+    byte send[6];
+    unsigned long UID = strtoul(strUID.c_str(), NULL, 16);
+    send[0] = (UID >> 24) & 0xFF;
+    send[1] = (UID >> 16) & 0xFF;
+    send[2] = (UID >> 8) & 0xFF;
+    send[3] = (UID >> 0) & 0xFF;
+    send[4] = MODEbyte;
+    send[5] = NUMBER;
+
     byte tmp, checksum = 0;
     unsigned char receive[6];
 
     SoftwareSerial sfSerial(7, 8);
     sfSerial.begin(9600);
     sfSerial.setTimeout(2500);
-    // sfSerial.write(data);
+
+    sfSerial.write(START_BYTE);
+    for (byte i = 0; i < 6; i++) {
+        if (send[i] == START_BYTE || send[i] == ESCAPE_BYTE) {
+            sfSerial.write(ESCAPE_BYTE);
+            sfSerial.write(send[i] ^ ESCAPE_MASC);
+        } else {
+            sfSerial.write(send[i]);
+        }
+    }
+
     sfSerial.listen();
     while (sfSerial.available() <= 0)
         ;
@@ -187,12 +264,7 @@ void ESPserial(String strUID, String Message, int NUMBER,
             }
             checksum += receive[i];
         }
-
-        buffer[0] = (unsigned long)(((receive[0] << 24) & 0xFF000000) |
-                                    ((receive[1] << 16) & 0x00FF0000) |
-                                    ((receive[2] << 8) & 0x0000FF00) |
-                                    ((receive[3] << 0) & 0x000000FF));
+        buffer[0] = receive[0];
         buffer[1] = receive[1];
-        buffer[2] = receive[2];
     }
 }
