@@ -251,14 +251,14 @@ void ESPserial(String strUID, byte MODEbyte, byte NUMBER, byte* buffer) {
         }
     }
 
-    sfSerial.listen();
-    while (sfSerial.available() <= 0)
+    Serial.listen();
+    while (Serial.available() <= 0)
         ;
-    if (sfSerial.read() == START_BYTE) {
+    if (Serial.read() == START_BYTE) {
         for (byte i = 0; i < 6; i++) {
-            tmp = sfSerial.read();
+            tmp = Serial.read();
             if (tmp == ESCAPE_BYTE) {
-                receive[i] = sfSerial.read() ^ ESCAPE_MASC;
+                receive[i] = Serial.read() ^ ESCAPE_MASC;
             } else {
                 receive[i] = tmp;
             }
